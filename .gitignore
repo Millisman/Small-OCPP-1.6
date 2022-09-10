@@ -53,9 +53,9 @@ dkms.conf
 
 # custom
 obj/
-.dep
+*.dep
 .dep/
-.kdev4
+*.kdev4
 .kdev4/
 
 
