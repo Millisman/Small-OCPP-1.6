@@ -87,7 +87,6 @@ void ws_disconnect() {
     ws_state = ws_start_conn;
 }
 
-
 void ws_update() {
 
     gsm_proc_update();
@@ -227,14 +226,9 @@ void ws_update() {
 // PONG 8a, 80
 
 void ws_receive() {
-    printf_P(PSTR("ws_receive\n"));
-
     uint8_t ws_receive_err = 1;
-
     if (WsRx.buff[0] == 0x81) {
-
         if ((WsRx.buff[1] & 0x80) == 0x00) {
-            
             uint16_t payloadLen = (WsRx.buff[1] & 0x7F);
             uint8_t payload_offset = 2;
             if(payloadLen == 126) {
@@ -253,10 +247,9 @@ void ws_receive() {
             ws_receive_err = 0; // OK
             WS16_CLIENT_RECEIVE((const char *)WsRx.buff + payload_offset, payloadLen);
             return;
-    //      } else { ws_receive_err = 3; } // FRAME SIZE
         } else { ws_receive_err = 2; } // FRAME MASKED
     }
-    
+
     if (ws_receive_err) {
         printf_P(PSTR("\nWsRx.buff[0] %u\n"), WsRx.buff[0]);
         printf_P(PSTR("\nWS_RECV ERR %u\n"), ws_receive_err);
@@ -267,7 +260,6 @@ void ws_print_key_GET() {
     fprintf_P(modem, PSTR("GET "));
     fprintf_P(modem, http_path);
     fprintf_P(modem, PSTR("%s"), (const char *)&_Gsm_Modem.info.s_GSN);
-    
     fprintf_P(modem, PSTR(" HTTP/1.1\r\nHost: "));
     fprintf_P(modem, http_host);
     // fprintf_P(modem, PSTR(":")); // dispensable
