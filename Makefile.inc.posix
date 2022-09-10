@@ -1,0 +1,17 @@
+CXX 	= gcc
+AR 	= ar
+SIZE 	= size
+OBJCOPY = objcopy
+AVRDUDE = avrdude
+
+SIZEFLAGS = 
+
+PRJCXXFLAGS = -Os -g \
+	-fno-exceptions -std=gnu99 \
+	-W -Wall -pedantic
+	
+LDFLAGS := $(LDFLAGS) -Wl,--gc-sections -Wl,--relax
+# -lwebsockets -ljson-c -lpthread -lsqlite3
+
+#FORMAT = ihex binary
+FORMAT = elf64-x86-64

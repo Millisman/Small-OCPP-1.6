@@ -50,3 +50,12 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# custom
+obj/
+.dep
+.dep/
+.kdev4
+.kdev4/
+
+
